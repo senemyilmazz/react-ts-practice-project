@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+type Props = {};
+
+const Navbar = (props: Props) => {
+    const cartState = useSelector((state: any) => state.cart);
+    console.log(cartState);
     return (
         <nav className="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div className="container-fluid">
@@ -27,3 +32,5 @@ export default function Navbar() {
         </nav>
     )
 }
+
+export default Navbar;

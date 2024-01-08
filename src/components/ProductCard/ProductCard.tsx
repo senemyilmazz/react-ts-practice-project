@@ -3,6 +3,8 @@ import { ProductModel } from '../../models/responses/ProductModel'
 import { Link } from 'react-router-dom';
 import ProductService from '../../services/ProductService';
 import { HttpStatusCode } from 'axios';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/actions/cartActions';
 
 type Props = {
     product:ProductModel;
@@ -11,6 +13,8 @@ type Props = {
 }
 
 export const ProductCard = (props: Props) => {
+
+    const dispatch = useDispatch();
 
     const deleteProduct = async () => {
         try {
@@ -24,6 +28,10 @@ export const ProductCard = (props: Props) => {
         return props.deleteProduct(props.product.id);
     }
 
+    const addProductToCart = () => {
+        dispatch(addToCart(props.product));
+    }
+
     return (
         <div className="card" >
             <img src={props.product.thumbnail} className="card-img-top" alt="..."/>
@@ -31,6 +39,7 @@ export const ProductCard = (props: Props) => {
                 <h5 className="card-title">{props.product.title}</h5>
                 <p className="card-text">{props.product.description}</p>
                 <Link to={"/product-detail/" + props.product.id} className="btn btn-primary">Details</Link>
+                <button onClick={addProductToCart} className='btn btn-secondary'>Sepete Ekle</button>
                 <button className="btn btn-danger" onClick={deleteProduct}>Delete</button>
             </div>
         </div>
