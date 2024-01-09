@@ -1,4 +1,4 @@
-import { ProductModel } from '../../models/responses/ProductModel';
+import { ProductModel } from '../models/responses/ProductModel';
 
 import { createSlice } from "@reduxjs/toolkit";
 
