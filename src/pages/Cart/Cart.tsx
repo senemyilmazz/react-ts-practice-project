@@ -22,23 +22,25 @@ export const Cart = (props: Props) => {
         <h1>Sepetiniz</h1>
         {cart.cartItems.length === 0 && <h2>Sepetinizde Ürün Bulunmamaktadır.</h2>}
         {cart.cartItems.length !== 0 && 
-            <div className='remove-from-cart d-flex align-items-center justify-content-end'>
-                <button className='btn btn-danger' onClick={clearAllCart}>Sepeti Temizle</button>
-            </div>}
+        <div className="row" >
+            <div className='remove-all-from-cart d-flex align-items-center justify-content-end'>
+                <button className='buton1 btn btn-danger' onClick={clearAllCart}>Sepeti Temizle</button>
+            </div>
+        </div>}
         <div>
             {cart.cartItems.map((item:ProductModel, i:number) => (
                 <div key={i} className="card">
-                <div className="row g-5 align-items-center" >
+                <div className="row g-0 align-items-center" >
                     <div className='col-md-3'>
                         <h5 className="card-title">{item?.title}</h5>
                         <img src={item?.thumbnail} className="card-img-top" alt="..."/>
                     </div>
-                    <div className="card-body col-md-7 d-flex flex-column justify-content-center">
+                    <div className="card-body col-md-8 d-flex flex-column justify-content-center">
                         <p className="card-text">{item?.description}</p>
                         <p className="card-price">{item?.price} $</p>
                     </div>
-                    <div className='remove-from-cart col-2'>
-                        <button className='btn btn-danger' onClick={() => removeProductFromCart(item)}>Ürünü Sil</button>
+                    <div className='remove-from-cart col-1'>
+                        <button className='buton2 btn btn-danger' onClick={() => removeProductFromCart(item)}>Ürünü Sil</button>
                     </div>
                 </div>
                 </div>
