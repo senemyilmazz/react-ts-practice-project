@@ -22,6 +22,9 @@ const Navbar = (props: Props) => {
                         <li className="nav-item">
                             <Link className="nav-link" to={"/product-add"}>Ürün Ekle</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={"/cart"}>Sepet</Link>
+                        </li>
                     </ul>
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

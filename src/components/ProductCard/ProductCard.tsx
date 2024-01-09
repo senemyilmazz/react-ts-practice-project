@@ -3,8 +3,8 @@ import { ProductModel } from '../../models/responses/ProductModel'
 import { Link } from 'react-router-dom';
 import ProductService from '../../services/ProductService';
 import { HttpStatusCode } from 'axios';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/actions/cartActions';
+import { useDispatch} from 'react-redux';
+import { addToCart} from '../../features/cart/cartSlice';
 
 type Props = {
     product:ProductModel;

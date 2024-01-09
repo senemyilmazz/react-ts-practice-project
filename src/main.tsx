@@ -6,10 +6,10 @@ import App from './App.tsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux'
-import { configureStore } from './store/configureStore.ts'
+import { store } from './App/store.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <Provider store={configureStore()}>
+  <Provider store={store}>
   <BrowserRouter>
     <App />
     </BrowserRouter>
