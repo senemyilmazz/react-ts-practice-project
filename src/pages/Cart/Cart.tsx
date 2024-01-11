@@ -1,17 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart, removeFromCart, selectCart, } from '../../features/cart/cartSlice';
-import { ProductModel } from '../../models/responses/ProductModel';
+import { CartItem, clearCart, selectCart, } from '../../Store/slices/cartSlice';
+import CartCard from '../../components/CartCard/CartCard';
 
 type Props = {}
 
 export const Cart = (props: Props) => {
     const dispatch = useDispatch();
     const cart = useSelector(selectCart);
-    
-    function removeProductFromCart (item: ProductModel) {
-        dispatch(removeFromCart(item));
-    }
 
     const clearAllCart = () => {
         dispatch(clearCart(cart));
@@ -28,21 +24,9 @@ export const Cart = (props: Props) => {
             </div>
         </div>}
         <div>
-            {cart.cartItems.map((item:ProductModel, i:number) => (
-                <div key={i} className="card">
-                <div className="row g-0 align-items-center" >
-                    <div className='col-md-3'>
-                        <h5 className="card-title">{item?.title}</h5>
-                        <img src={item?.thumbnail} className="card-img-top" alt="..."/>
-                    </div>
-                    <div className="card-body col-md-8 d-flex flex-column justify-content-center">
-                        <p className="card-text">{item?.description}</p>
-                        <p className="card-price">{item?.price} $</p>
-                    </div>
-                    <div className='remove-from-cart col-1'>
-                        <button className='buton2 btn btn-danger' onClick={() => removeProductFromCart(item)}>Ürünü Sil</button>
-                    </div>
-                </div>
+            {cart.cartItems.map((item: CartItem, i:number) => (
+                <div key={i} className="col-12 mb-5">
+                    <CartCard item={item}></CartCard>
                 </div>
             ))}
         </div>

@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import ProductService from '../../services/ProductService';
 import { HttpStatusCode } from 'axios';
 import { useDispatch} from 'react-redux';
-import { addToCart} from '../../features/cart/cartSlice';
+import { addToCart} from '../../Store/slices/cartSlice';
 
 type Props = {
     product:ProductModel;
     deleteProduct:any;
+    title ?: String;
     //product?:ProductModel yazmış olsaydık prop göndermesini opsiyonel tutmuş olurduk ama ilk halinde zorunlu olmalı!!
 }
 
@@ -29,7 +30,7 @@ export const ProductCard = (props: Props) => {
     }
 
     const addProductToCart = () => {
-        dispatch(addToCart(props.product));
+        dispatch(addToCart({product: props.product}));
     }
 
     return (
