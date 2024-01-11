@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+    const navigate = useNavigate();
     const cartState = useSelector((state: any) => state.cart);
-    console.log(cartState);
+
     return (
         <nav className="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
             <div className="container-fluid">
@@ -23,7 +24,12 @@ const Navbar = (props: Props) => {
                             <Link className="nav-link" to={"/product-add"}>Ürün Ekle</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to={"/cart"}>Sepet</Link>
+                            <button onClick={() => navigate("/cart")} type="button" className="btn position-relative">
+                                Sepet
+                                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {cartState.cartItems.length}
+                                </span>
+                            </button>
                         </li>
                     </ul>
                     <form className="d-flex" role="search">
