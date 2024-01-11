@@ -10,6 +10,7 @@ export interface CartItem {
 
 const initialCartState = {
     cartItems: [] as CartItem [],
+    totalPrice : 0 as number,
 }
 
 export const cartSlice: any = createSlice({
@@ -30,7 +31,7 @@ export const cartSlice: any = createSlice({
         removeFromCart(state, action : {payload: CartItem}) {
             state.cartItems = state.cartItems.filter((item: CartItem) => item.product.id !== action.payload.product.id)
         },
-        decreaseFromCart(state, action) {
+        decreaseFromCart(state, action : {payload: CartItem}) {
             let existingItem = state.cartItems.find((item) => item.product.id == action.payload.product.id);
             if (existingItem && existingItem.quantity > 0) {
                 existingItem.quantity--;
@@ -39,13 +40,18 @@ export const cartSlice: any = createSlice({
                 state.cartItems = state.cartItems.filter((item: CartItem) => item.product.id !== action.payload.product.id)
             }
         },
+        cartPrice(state) {
+            state.totalPrice = 0;
+            state.cartItems.forEach((item: CartItem) => state.totalPrice += item.product.price * item.quantity);
+        },
+
         clearCart(state) {
             state.cartItems = []
         },
     }
 })
 
-export const {addToCart, removeFromCart, clearCart, productQuantity, decreaseFromCart} = cartSlice.actions;
+export const {addToCart, removeFromCart, clearCart, productQuantity, decreaseFromCart, cartPrice} = cartSlice.actions;
 
 export const selectCart = (state: any) => state.cart;
 
