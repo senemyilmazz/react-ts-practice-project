@@ -20,10 +20,13 @@ export const cartSlice: any = createSlice({
             let existingItem = state.cartItems.find((item: CartItem) => item.product.id == action.payload.product.id);
 
             if (existingItem) {
-                existingItem.quantity++;
+                if (action.payload.quantity)
+                    existingItem.quantity += action.payload.quantity;
+                else
+                    existingItem.quantity++;
             }
             else {
-                state.cartItems.push({product: action.payload.product, quantity : 1});
+                state.cartItems.push({product: action.payload.product, quantity : action.payload.quantity ? action.payload.quantity : 1});
             }
             localStorage.setItem("cart", JSON.stringify(state.cartItems));
         },
